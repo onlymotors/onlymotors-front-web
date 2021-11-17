@@ -1,0 +1,38 @@
+.container{
+    background-color: #ff7d04;
+    width: 100vw;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.lista-menu{
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.lista-menu #logo{
+    margin-right: 260px;
+}
+
+.lista-menu #anuncios, #chat, #entrar, #btn-anuncio{
+    padding-left: 70px;
+}
+.lista-menu .icons{
+    margin-right: 10px;
+}
+#btn-add-anuncio{
+    background-color: #fff;
+    width: 90px;
+    height: 30px;
+    border-radius: 10px;
+    transition: 0.4s;
+    color: #ff7d04;
+}
+
+#btn-add-anuncio:hover{
+    transform: scale(1.1) ;
+}

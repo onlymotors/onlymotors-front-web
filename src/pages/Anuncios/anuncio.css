@@ -1,0 +1,78 @@
+.container-oneAnuncio{
+    background-color: #fff;
+    margin-top: 30px;
+    margin-left: 17%;
+    margin-right: 17%;
+    box-shadow: 0px 0px 20px 4px rgba(0, 0, 0, 0.25);
+    padding: 30px 30px 30px;
+    height: auto;
+}
+
+.container-descricao h3:first-child{
+    font-size: 2.5rem;
+    font-weight: 100;    
+    margin-bottom: 10px;
+}
+
+.container-descricao #preco{
+    color: #ff7d04;
+    font-size: 2.5rem;
+    margin-top: 10px;
+    margin-bottom: 30px;
+}
+
+.container-info #info{
+    font-size: 1.5rem;
+    font-weight: 100;
+    margin-bottom: 10px;
+}
+
+.container-descricao .container-contato img{
+    height:10%;
+    width: 50%;
+}
+
+.container-contato{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.container-contato button{
+    margin-right: 10%;
+    margin-left: 10%;
+    margin-top: 5%;
+    width: 150px;
+    height: 40px;
+    background-color: #ff7d04;
+    color: #fff;
+    border-radius: 10px;
+    transition: 0.4s;
+}
+
+.container-contato button:hover{
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
+.icons{
+    margin-right: 10px;
+}
+
+.container-info p{
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    color: rgba(0, 0, 0, 0.6);
+}
+
+.container-info span{
+    color: #000;
+    font-size: 1.4rem;
+    
+}
+input[type='file']{
+    display: none;
+}
+.add-upload input button{
+    border: none;
+}
