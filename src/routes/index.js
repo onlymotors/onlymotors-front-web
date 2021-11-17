@@ -5,6 +5,7 @@ import Anuncio from '../pages/Anuncios';
 import Home from '../pages/Home';
 import Login from '../pages/Login';
 import CadastroUser from '../pages/CadastroUser';
+import MeusAnuncios from '../pages/MeusAnuncios';
 
 
 export default function Routes(){
@@ -14,7 +15,8 @@ export default function Routes(){
             <Route exact path="/add" component={AddAnuncio} isPrivate></Route>
             <Route exact path="/anuncio/:id" component={Anuncio}></Route>
             <Route exact path="/login" component={Login} islogin></Route>
-            <Route exact path="/infoUser" component={CadastroUser}></Route>
+            <Route exact path="/infoUser" component={CadastroUser} isPrivate></Route>
+            <Route exact path='/MeusAnuncios' component={MeusAnuncios} isPrivate></Route>
         </Switch>
     );
 };

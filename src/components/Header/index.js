@@ -21,7 +21,7 @@ export default function Header() {
                         </li>
                         <li id='anuncios'>
                             <FontAwesomeIcon icon={faList} size="lg" color="#fff" className='icons' />
-                            <a href="#">Meus Anúncios</a>
+                            <Link to="/MeusAnuncios">Meus Anúncios</Link>
                         </li>
                         <li id='chat'>
                             <FontAwesomeIcon icon={faComments} size="lg" color="#fff" className='icons' />
@@ -48,7 +48,7 @@ export default function Header() {
                         </li>
                         <li id='anuncios'>
                             <FontAwesomeIcon icon={faList} size="lg" color="#fff" className='icons' />
-                            <a href="#">Meus Anúncios</a>
+                            <Link to="/MeusAnuncios">Meus Anúncios</Link>
                         </li>
                         <li id='chat'>
                             <FontAwesomeIcon icon={faComments} size="lg" color="#fff" className='icons' />
