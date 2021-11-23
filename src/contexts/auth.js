@@ -1,4 +1,5 @@
 import { useState, createContext, useEffect } from "react";
+import { Redirect } from "react-router-dom";
 import api from "../services/api";
 
 export const AuthContext = createContext();
@@ -13,7 +14,7 @@ function AuthProvider({ children }) {
     useEffect(() => {
         const authToken = localStorage.getItem('tokenAuth');
         if (authToken) {
-            api.defaults.headers.Authorization = `Bearer ${JSON.parse(authToken)}`;
+            api.defaults.headers.Authorization = `Bearer ${authToken}`;
             setAuthenticated(true);
 
             api.get(`users/userid`).then(res => {
@@ -35,14 +36,20 @@ function AuthProvider({ children }) {
             await api.post('login', data)
                 .then(async (response) => {
                     setloadingAuth(true);
-                    localStorage.setItem('tokenAuth', JSON.stringify(response.data.token));
-                    api.defaults.headers.Authorization = `Bearer ${(response.data.token)}`;
-                    setAuthenticated(true);
 
-                    await api.get(`users/userid`).then(res => {
-                        setUser(res.data[0])
+                    if (response.data.statusCadastro === true) {
 
-                    });
+                        localStorage.setItem('tokenAuth', response.data.token);
+                        api.defaults.headers.Authorization = `Bearer ${(response.data.token)}`;
+                        setAuthenticated(true);
+
+                        await api.get(`users/userid`).then(res => {
+                            setUser(res.data[0])
+
+                        });
+                    } else {
+                        return window.location.href = `/alterarcadastro/${response.data.token}`
+                    }
                 })
                 .catch((e) => {
                     console.log("Ocorreu um erro ao tentar fazer o login " + e);

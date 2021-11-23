@@ -12,18 +12,13 @@ export default function Drop() {
     const menu = (
         <Menu>
             <Menu.Item>
-                <Link to='/infoUser'>
+                <Link to='/MeuCadastro'>
                     Meu cadastro
                 </Link>
             </Menu.Item>
-            <Menu.Item>
-                <Link to='/'>
-                    Favoritos
-                </Link>
-            </Menu.Item>
             <Menu.Item >
-                <Link to='/'>
-                    Painel de Anúncios
+                <Link to='/MeusAnuncios'>
+                    Meus Anúncios
                 </Link>
             </Menu.Item>
             <Menu.Item >
@@ -32,12 +27,7 @@ export default function Drop() {
                 </Link>
             </Menu.Item>
             <Menu.Item >
-                <Link to='/'>
-                    Chat
-                </Link>
-            </Menu.Item>
-            <Menu.Item >
-                <button onClick={Logout}>Sair</button>
+                <button style={{background: "none"}} onClick={Logout}>Sair</button>
             </Menu.Item>
         </Menu>
     );

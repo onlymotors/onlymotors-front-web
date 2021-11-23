@@ -1,8 +1,8 @@
 import React, { useState, useContext } from "react";
 import { AuthContext } from '../../contexts/auth';
 import { Link } from "react-router-dom";
-import foto_perfil from "../../assets/logo.png";
-
+import foto_perfil from "../../assets/om2.png";
+import './login.css';
 
 export default function Login() {
 
@@ -20,30 +20,26 @@ export default function Login() {
         )
     }
     return (
-        <div>
-            <div>
-                <h2>ONLY MOTORS</h2>
-                <div>
-                    <img src={foto_perfil} alt='Imagem de perfil'/>
-                    <form>
-                        <input type='email'
-                            placeholder='EMAIL'
-                            value={emailUser}
-                            onChange={e => setEmailUser(e.target.value)}
-                        ></input>
-                        <input type='password'
-                            placeholder='SENHA'
-                            value={senhaUser}
-                            onChange={e => setSenhaUser(e.target.value)}
-                        ></input>
-                        <button type='submit' onClick={handleLogin}>ENTRAR</button>
-                    </form>
-                    <div>
-                        <p>Ainda não tem uma conta ? <Link to="/" style={{ color: '#FF7D04' }}>Cadastre aqui</Link> </p>
-                    </div>
-                </div>
+        <div>  
+            <div className="container-login">
+                <img src={foto_perfil} alt='Imagem de perfil'/>
+                <h2 style={{letterSpacing: "10px", marginBottom: "50px", marginTop: "20px"}}>ONLY·MOTORS</h2>
+                
+                <form>
+                    <input type='email'
+                        placeholder='EMAIL'
+                        value={emailUser}
+                        onChange={e => setEmailUser(e.target.value)}
+                    />
+                    <input type='password'
+                        placeholder='SENHA'
+                        value={senhaUser}
+                        onChange={e => setSenhaUser(e.target.value)}
+                    />
+                    <button type='submit' onClick={handleLogin}>ENTRAR</button>
+                </form>
+                <p>Ainda não tem uma conta ? <Link to="/singin" style={{ color: '#FF7D04' }}>Cadastre aqui</Link> </p>
             </div>
-
         </div>
     )
 }

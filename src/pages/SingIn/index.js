@@ -1,12 +1,11 @@
-import React, {useState} from "react";
+import React, {useState} from 'react';
 import { useHistory } from "react-router-dom";
 import Header from "../../components/Header";
 import api from "../../services/api";
-import './add.css';
 
-export default function AddAnuncio() {
+export default function SingIn() {
 
-    const [arquivo,setArquivo] = useState(null);
+    const [arquivo, setArquivo] = useState(null);
     const [name, setName] = useState('');
     const history = useHistory();
 
@@ -20,13 +19,13 @@ export default function AddAnuncio() {
         let fromData = new FormData();
         fromData.append('file', arquivo)
 
-        api.post('/anuncios', fromData, {
+        api.post('/users', fromData, {
             headers: {'Content-Type':'multipart/form-data'}
         })
         .then(() => {
-            alert('Anúncios adicionados com sucesso')
+            alert('Senha(s) enviada(s) aos e-mail(s) cadastrado(s)')
             setName('')
-            history.push('/')
+            history.push('/login')
         })
         .catch((e) => {
             alert("Algo deu errado")
@@ -34,12 +33,13 @@ export default function AddAnuncio() {
         })
     }
 
+
     return (
-        <div>
+       <div>
             <Header />
             <div className='container-bg'>
                 <div className='add-title'>
-                    <h2>Adicionar Anúncios</h2>
+                    <h2>Criar usuário</h2>
                 </div>
                 <div className='add-conteudo'>
                     <h3>Passo 1</h3>
@@ -48,9 +48,7 @@ export default function AddAnuncio() {
                     </p>
                     <h3>Exemplo de CSV</h3>
                     <p>
-                        Nome do fabricante | descrição marca do veículo | descrição do modelo
-                        do veículo | cod do anunciante | ano de fabricação | ano do modelo | cpf
-                        do anunciante | cnpj do anunciante | valor do veículo
+                        Nome | Apelido | CPF | CNPJ | Telefone | Email
                     </p>
                     <h3>Passo 2</h3>
                     <p>
@@ -71,5 +69,5 @@ export default function AddAnuncio() {
                 </div>
             </div>
         </div>
-    );
-};
+    )
+}

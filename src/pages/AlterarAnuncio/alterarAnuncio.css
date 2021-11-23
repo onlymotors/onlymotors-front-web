@@ -1,0 +1,36 @@
+.boxbox {
+    display: flex;
+}
+
+.left {
+    flex: 0 400px
+}
+
+.center {
+    flex: 400px
+}
+
+.right {
+    flex: 0 400px
+}
+
+.uploadAnuncioFoto{
+    height: 2.5rem;
+    width: 15rem;
+    margin-bottom: 1.5rem;
+    padding: 0.5rem;
+    background-color: #ff7d04;
+    color: #fff;
+    transition: 0.4s;
+}
+
+.uploadAnuncioFoto:hover{
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
+.imagemAlterarAnuncio{
+    max-height: 270px;
+    max-width: 270px;
+    margin-bottom: 1rem;
+}

@@ -43,16 +43,15 @@ export default function Header() {
             <div className='container'>
                 <div className='div-conteudo'>
                     <ul className='lista-menu'>
+                        <li id='logoName'>
+                            <a style={{letterSpacing: "10px", marginRight: "1rem"}} href="/">ONLY·MOTORS</a>
+                        </li>
                         <li id='logo'>
                             <Link to='/'><img src={logo} style={{width:'40px'}}></img></Link>
                         </li>
-                        <li id='anuncios'>
-                            <FontAwesomeIcon icon={faList} size="lg" color="#fff" className='icons' />
-                            <Link to="/MeusAnuncios">Meus Anúncios</Link>
-                        </li>
                         <li id='chat'>
                             <FontAwesomeIcon icon={faComments} size="lg" color="#fff" className='icons' />
-                            <a href="#">Chat</a>
+                            <a href="/Chat">Chat</a>
                         </li>
                         <li id='entrar'>
                             <FontAwesomeIcon icon={faUser} size="lg" color="#fff" className='icons' />
