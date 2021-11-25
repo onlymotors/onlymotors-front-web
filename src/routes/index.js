@@ -12,6 +12,7 @@ import SingIn from '../pages/SingIn'
 import Relatorio from '../pages/Relatorio'
 import Chat from '../pages/Chat'
 import ChatRoom from '../pages/ChatRoom';
+import Busca from '../pages/Busca';
 
 
 export default function Routes() {
@@ -29,6 +30,7 @@ export default function Routes() {
             <Route exact path='/Relatorio' component={Relatorio}></Route>
             <Route exact path='/Chat/:id?' component={Chat}></Route>
             <Route exact path='/ChatRoom/:id' component={ChatRoom}></Route>
+            <Route exact path='/Busca/:query?/:searcher?' component={Busca}></Route>
         </Switch>
     );
 };

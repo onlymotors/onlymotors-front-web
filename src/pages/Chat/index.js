@@ -12,6 +12,7 @@ export default function Chat() {
   const [numRooms, setNumRooms] = useState(0);
   const [chatRoomId, setChatRoomId] = useState("");
   const [roomVisible, setRoomVisible] = useState(false);
+  const [estado, setEstado] = useState(1);
 
   useEffect(() => {
     if (id) {
@@ -26,7 +27,7 @@ export default function Chat() {
       .catch(e => {
         console.log("Erro ao coletar salas de chats")
       })
-  }, [])
+  }, [estado])
 
   useEffect(() => {
     if (chatRoomId !== "") {
@@ -35,8 +36,10 @@ export default function Chat() {
   }, [chatRoomId])
 
   const carregarSala = async (item) => {
-    setChatRoomId(item._id)
-    setRoomVisible(false)
+    if (item._id !== chatRoomId) {
+      setChatRoomId(item._id)
+      setRoomVisible(false)
+    }
   }
 
   return (
@@ -63,7 +66,7 @@ export default function Chat() {
 
       )}
       {roomVisible &&
-        <ChatRoom chatRoomId={chatRoomId} />
+        <ChatRoom chatRoomId={chatRoomId} estado={estado} setEstado={setEstado} />
       }
 
     </>

@@ -5,7 +5,7 @@ import './anuncioSelecionado.css';
 import anuncio_img from '../../assets/anuncio_foto.png';
 import { faComment } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import api from "../../services/api";
+import api, { API_URL } from "../../services/api";
 
 
 export default function Anuncio() {
@@ -27,15 +27,11 @@ export default function Anuncio() {
     const criarChatRoom = async () => {
         try {
 
-            let contagem = anuncio.numContatos + 1
-            console.log(anuncio)
-            console.log(contagem)
             let dados = {
                 anuncioId: id,
                 nomeChatRoom: `${anuncio.veiculoMarca} ${anuncio.descricaoVeiculo} - ${anuncio.anoModelo}`
             }
             let chatRoom = await api.post(`chatrooms`, dados)
-            await api.patch(`anuncios/${id}/numcontatos`, { contagem: contagem })
             window.location.href = `/Chat/${chatRoom.data.chatRoomId}`
             // navigation.navigate("Chat Room", {
             //     chatRoomId: chatRoom.data.chatRoomId,
@@ -53,7 +49,7 @@ export default function Anuncio() {
             <div className='container-oneAnuncio'>
                 <div className='container-descricao'>
                     <div className='container-contato'>
-                        <img src={anuncio_img} alt='Imagem do Anuncio'></img>
+                        <img  src={`${(anuncio.urlImage) ? anuncio.urlImage : API_URL + "images/sem_foto.png"}`} alt='Foto Placeholder'></img>
                         <button onClick={() => criarChatRoom()}>
                             <FontAwesomeIcon icon={faComment} color='#FFF' size='lg' className='icons' />
                             MENSAGEM

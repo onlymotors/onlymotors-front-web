@@ -9,7 +9,7 @@ import {
 import { geradorRandomico } from '../../utils/geradores';
 
 
-export default function ChatRoom (props) {
+export default function ChatRoom(props) {
 
 
   const [isLoading, setIsLoading] = useState(true)
@@ -38,7 +38,7 @@ export default function ChatRoom (props) {
     console.log("room", room)
     if (room) initiateSocket(room);
     subscribeToChat((err, data) => {
-      if (err) {console.log("error"); return};
+      if (err) { console.log("error"); return };
       data._id = geradorRandomico(15)
       console.log(data)
       setChat(oldChats => [...oldChats, data])
@@ -109,8 +109,8 @@ export default function ChatRoom (props) {
         </div>
       )}
 
-      <form onSubmit={e => {salvarMensagem(e); sendMessage(dados); setMessage('')}}>
-      {/* <div> */}
+      <form onSubmit={e => { salvarMensagem(e); sendMessage(dados); setMessage(''); props.setEstado(props.estado + 1) }}>
+        {/* <div> */}
         <input value={message} onChange={e => setMessage(e.target.value)} />
         <button type="submit" >Enviar</button>
         {/* <button onClick={() => {salvarMensagem(); sendMessage(dados); setMessage('')}} >Enviar</button> */}
