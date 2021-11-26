@@ -1,17 +1,19 @@
-import React, { useEffect, useState } from "react";
-import { useParams } from 'react-router-dom';
+import React, { useContext, useEffect, useState } from "react";
+import { Link, useParams } from 'react-router-dom';
 import Header from "../../components/Header";
 import './anuncioSelecionado.css';
-import anuncio_img from '../../assets/anuncio_foto.png';
 import { faComment } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import api, { API_URL } from "../../services/api";
+import { AuthContext } from "../../contexts/auth";
 
 
 export default function Anuncio() {
 
     const { id } = useParams();
     const [anuncio, setAnuncio] = useState([])
+
+    const { authenticated } = useContext(AuthContext)
 
     useEffect(() => {
         async function loadAnuncio() {
@@ -49,11 +51,20 @@ export default function Anuncio() {
             <div className='container-oneAnuncio'>
                 <div className='container-descricao'>
                     <div className='container-contato'>
-                        <img style={{maxWidth: "270px", maxHeight: "270px"}} src={`${(anuncio.urlImage) ? anuncio.urlImage : API_URL + "images/sem_foto.png"}`} alt='Foto Placeholder'></img>
-                        <button onClick={() => criarChatRoom()}>
-                            <FontAwesomeIcon icon={faComment} color='#FFF' size='lg' className='icons' />
-                            MENSAGEM
-                        </button>
+                        <img style={{ maxWidth: "270px", maxHeight: "270px" }} src={`${(anuncio.urlImage) ? anuncio.urlImage : API_URL + "images/sem_foto.png"}`} alt='Foto Placeholder'></img>
+                        {
+                            authenticated ? <button onClick={() => criarChatRoom()}>
+                                <FontAwesomeIcon icon={faComment} color='#FFF' size='lg' className='icons' />
+                                MENSAGEM
+                            </button> : 
+                                <button style={{'marginRight':'200px'}}>
+                                    <Link to='/login'>
+                                    <FontAwesomeIcon icon={faComment} color='#FFF' size='lg' className='icons' />
+                                    MENSAGEM
+                                    </Link>
+                                </button>
+                            
+                        }
                     </div>
                     <h3 id='preco'>R$ {new Intl.NumberFormat('pt-BR', { maximumSignificantDigits: 3 }).format(anuncio.veiculoValor)}</h3>
                 </div>

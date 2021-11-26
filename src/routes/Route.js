@@ -11,20 +11,9 @@ export default function RouterWrapper({
 
     const {authenticated} = useContext(AuthContext);
 
-    const loading = false;
-
-    if (loading) {
-        return (
-            <div>
-
-            </div>
-        )
-    }
-
     if (!authenticated && isPrivate) {
         return <Redirect to='/login' />
     }
-
 
     if(authenticated && islogin){
         return <Redirect to='/' />

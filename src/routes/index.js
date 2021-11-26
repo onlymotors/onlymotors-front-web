@@ -24,13 +24,13 @@ export default function Routes() {
             <Route exact path="/login" component={Login} islogin></Route>
             <Route exact path="/MeuCadastro" component={MeuCadastro} isPrivate></Route>
             <Route exact path='/MeusAnuncios' component={MeusAnuncios} isPrivate></Route>
-            <Route exact path='/AlterarCadastro/:token' component={AlterarCadastro}></Route>
-            <Route exact path='/AlterarAnuncio/:anuncio_id' component={AlterarAnuncio} isPrivate></Route>
+            <Route exact path='/AlterarCadastro/:token' component={AlterarCadastro} ></Route>
+            <Route exact path='/AlterarAnuncio/:anuncio_id' component={AlterarAnuncio} ></Route>
             <Route exact path='/singin' component={SingIn}></Route>
             <Route exact path='/Relatorio' component={Relatorio}></Route>
-            <Route exact path='/Chat/:id?' component={Chat}></Route>
-            <Route exact path='/ChatRoom/:id' component={ChatRoom}></Route>
-            <Route exact path='/Busca/:query?/:searcher?' component={Busca}></Route>
+            <Route exact path='/Chat/:id?' component={Chat} ></Route>
+            <Route exact path='/ChatRoom/:id' component={ChatRoom} ></Route>
+            <Route exact path='/Busca/:query?/:searcher?' component={Busca} isPrivate></Route>
         </Switch>
     );
 };
