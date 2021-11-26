@@ -88,3 +88,18 @@
 	transform: scale(1.5);
 	opacity: 1;
 }
+
+.btnRelatorioAnuncios{
+    height: 2rem;
+    width: 8rem;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+    background-color: #ff7d04;
+    color: #fff;
+    transition: 0.4s;
+}
+
+.btnRelatorioAnuncios:hover{
+    cursor: pointer;
+    transform: scale(1.1);
+}

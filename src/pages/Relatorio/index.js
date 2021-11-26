@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import api from '../../services/api';
 import Header from '../../components/Header'
+import './relatorio.css'
 
 export default function Relatorio() {
   const [relatorio, setRelatorio] = useState([])
@@ -70,7 +71,10 @@ export default function Relatorio() {
     return (
       <>
         <Header />
-        <div>Carregando...</div>
+        <div className='container-relatorio'>
+          <div>Carregando...</div>
+        </div>
+
       </>
     )
   }
@@ -78,27 +82,34 @@ export default function Relatorio() {
   return (
     <>
       <Header />
-      <div>
+      <div className='container-relatorio'>
         <button onClick={() => setIsExporting(true)}>Exportar Excel</button>
-      </div>
-      {relatorio.map(item =>
-        <div>
 
-          <div>Rank</div>
-          <div>{item.rank}</div>
-          <div>{item.nome}</div>
-          <div>Data de publicação: {new Date(item.dataPublicacao).toLocaleDateString()}</div>
-          <div>Data da última alteração: {new Date(item.dataAlteracao).toLocaleDateString()}</div>
-          <div>Número de visitas: {item.numVisitas}</div>
-          <div>Data da primeira visita: {(item.dataPrimeiraVisita === "Nunca visitado") ? "Nunca visitado" : new Date(item.dataPrimeiraVisita).toLocaleDateString()}</div>
-          <div>Tempo até a primeira visita: {item.primeiraVisita}</div>
-          <div>Média de visitas diárias: {item.medVisitasDia.toLocaleString("pt-BR")}</div>
-          <div>Número de contatos: {item.numContatos}</div>
-          <div>Data do primeiro contato: {(item.dataPrimeiroContato === "Nunca contatado") ? "Nunca contatado" : new Date(item.dataPrimeiroContato).toLocaleDateString()}</div>
-          <div>Tempo até o primeiro contato: {item.primeiroContato}</div>
-          <div>Total de mensagens trocadas: {item.totalMensagens}</div>
+        <div className='content-relatorio'>
+          <div style={{ width: "50%" }}>
+            {relatorio.map(item =>
+              <div className="relatorioItem">
+                <h3 style={{ fontWeight: "bold" }}>Rank nº {item.rank}: {item.nome}</h3>
+                <br />
+                <p>Data de publicação: {new Date(item.dataPublicacao).toLocaleDateString()}</p>
+                <p>Data da última alteração: {new Date(item.dataAlteracao).toLocaleDateString()}</p>
+                <p>Número de visitas: {item.numVisitas}</p>
+                <p>Data da primeira visita: {(item.dataPrimeiraVisita === "Nunca visitado") ? "Nunca visitado" : new Date(item.dataPrimeiraVisita).toLocaleDateString()}</p>
+                <p>Tempo até a primeira visita: {item.primeiraVisita}</p>
+                <p>Média de visitas diárias: {item.medVisitasDia.toLocaleString("pt-BR")}</p>
+                <p>Número de contatos: {item.numContatos}</p>
+                <p>Data do primeiro contato: {(item.dataPrimeiroContato === "Nunca contatado") ? "Nunca contatado" : new Date(item.dataPrimeiroContato).toLocaleDateString()}</p>
+                <p>Tempo até o primeiro contato: {item.primeiroContato}</p>
+                <p>Total de mensagens trocadas: {item.totalMensagens}</p>
+              </div>
+            )}
+          </div>
         </div>
-      )}
+      </div>
+
+
+
+
     </>
   )
 

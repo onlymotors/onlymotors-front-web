@@ -15,7 +15,7 @@ export default function CadastroUser() {
         api.delete('users/userid')
         .then((res) => {
             localStorage.removeItem('tokenAuth');
-            alert('Usuário e  excluido com sucesso !')
+            alert('Usuário excluido com sucesso !')
             history.push("/")
 
         })

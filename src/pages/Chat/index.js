@@ -3,6 +3,7 @@ import api, { API_URL } from '../../services/api';
 import Header from '../../components/Header';
 import ChatRoom from '../ChatRoom';
 import { useParams } from 'react-router';
+import './chat.css'
 
 export default function Chat() {
 
@@ -45,30 +46,31 @@ export default function Chat() {
   return (
     <>
       <Header />
+      <div className="container-chat">
+        <div className="content-chat">
+          <div className="leftMenu">
+            {chatRooms.map(item =>
+              <>
+                <button onClick={() => carregarSala(item)}>
+                  <span style={{fontWeight:"bold"}}>{item.nomeChatRoom}</span>
+                  {(item.mensagens.length > 0) &&
+                    <>
+                      <div>{item.mensagens[0].nomeUser}: {item.mensagens[0].mensagem}</div>
+                      <div>{item.mensagens[0].mensagemData}</div>
+                    </>
+                  }
+                </button>
+              </>
+            )}
+          </div>
 
-      {chatRooms.map(item =>
-        <div>
-          <>
-            {/* <button onClick={() => window.location.href=`/ChatRoom/${item._id}`}> */}
-            <button onClick={() => carregarSala(item)}>
-              <div>{item.nomeChatRoom}</div>
-              {(item.mensagens.length > 0) &&
-                <>
-                  <div>{item.mensagens[0].nomeUser}</div>
-                  <div>{item.mensagens[0].mensagem}</div>
-                  <div>{item.mensagens[0].mensagemData}</div>
-                </>
-              }
-            </button>
-
-          </>
+          <div className="rightChatRoom">
+            {roomVisible &&
+              <ChatRoom chatRoomId={chatRoomId} estado={estado} setEstado={setEstado} />
+            }
+          </div>
         </div>
-
-      )}
-      {roomVisible &&
-        <ChatRoom chatRoomId={chatRoomId} estado={estado} setEstado={setEstado} />
-      }
-
+      </div>
     </>
   )
 }

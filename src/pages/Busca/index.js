@@ -5,6 +5,7 @@ import { useParams } from 'react-router';
 import numeral from '../../utils/formatador'
 import { Link } from 'react-router-dom';
 import Pagination from "react-js-pagination";
+import './busca.css'
 
 export default function Busca() {
 
@@ -197,91 +198,70 @@ export default function Busca() {
     <>
       <Header query={query} />
 
-      <div>Filtrar</div>
-      <div>
-        <select value={marca} onChange={e => setMarca(e.target.value)}>
-          <option>Marca</option>
-          {marcas.map(marca =>
-            <option>{marca}</option>
-          )}
-
-        </select>
-
-
-      </div>
-
-      <div>
-        <select value={modelo} onChange={e => setModelo(e.target.value)}>
-          <option>Modelo</option>
-          {modelos.map(modelo =>
-            <option>{modelo}</option>
-          )}
-        </select>
-
-
-      </div>
-
-      <div>
-        <select value={ano} onChange={e => setAno(e.target.value)}>
-          <option>Ano</option>
-          {anos.map(ano =>
-            <option>{ano}</option>
-          )}
-        </select>
-
-
-      </div>
-
-      <div>
-        <div>Valor (R$)</div>
-        <input placeholder="Min" value={valorMinimo} onChange={e => mascararValor(e.target.value, setValorMinimo)} />
-        <input placeholder="Max" value={valorMaximo} onChange={e => mascararValor(e.target.value, setValorMaximo)} />
-
-      </div>
-      <button
-        onClick={() => {
-          setBuscador("buscarFiltros")
-          setSearchQuery("");
-          setContar("true");
-          setContadorPagina(1)
-          // buscarFiltros();
-        }}
-      >
-        Filtrar
-      </button>
-
-
-      {/* // SECAO RESULTADOS */}
-      <div className='container-home'>
+      <div className="container-busca">
         <div className='container-title'>
           <h2>Carros Novos e Usados</h2>
           {anuncios.length === 0 ? <span>Nenhum anúncios encontrado</span> : <span>{numAnuncios} Anúncios Encontrados</span>}
         </div>
-        <div>
-          {anuncios &&
-            anuncios.map((index) => {
-              return (
-                <div className='container-anuncio' id={index._id}>
-                  <div className='anuncio'>
-                    <div className='anuncio-img'>
-                      <Link to={`/anuncio/${index._id}`}>
-                        <img style={{ maxHeight: "270px", maxWidth: "270px" }} src={`${(index.urlImage) ? index.urlImage : API_URL + "images/sem_foto.png"}`} alt='Foto Placeholder'></img>
-                      </Link>
-                    </div>
-                    <div className='anuncio-conteudo'>
-                      <Link to={`/anuncio/${index._id}`}><h3>{index.veiculoMarca} {index.descricaoVeiculo}</h3></Link>
-                      <span>{index.anoModelo}</span>
-                      <h3 id='preco'>R$ {new Intl.NumberFormat('pt-BR', { maximumSignificantDigits: 3 }).format(index.veiculoValor)}</h3>
 
-                    </div>
+        <section className="buscaSection">
+          <select style={{ marginRight: "0.5rem" }} value={marca} onChange={e => setMarca(e.target.value)}>
+            <option>Marca</option>
+            {marcas.map(marca =>
+              <option>{marca}</option>
+            )}
+
+          </select>
+          <select style={{ marginRight: "0.5rem" }} value={modelo} onChange={e => setModelo(e.target.value)}>
+            <option>Modelo</option>
+            {modelos.map(modelo =>
+              <option>{modelo}</option>
+            )}
+          </select>
+          <select style={{ marginRight: "0.5rem" }} value={ano} onChange={e => setAno(e.target.value)}>
+            <option>Ano</option>
+            {anos.map(ano =>
+              <option>{ano}</option>
+            )}
+          </select>
+          <br />
+          <input placeholder="Valor Mínimo" value={valorMinimo} onChange={e => mascararValor(e.target.value, setValorMinimo)} />
+          <input placeholder="Valor Máximo" value={valorMaximo} onChange={e => mascararValor(e.target.value, setValorMaximo)} />
+          <button
+            onClick={() => {
+              setBuscador("buscarFiltros")
+              setSearchQuery("");
+              setContar("true");
+              setContadorPagina(1)
+              // buscarFiltros();
+            }}
+          >
+            Filtrar
+          </button>
+        </section>
+
+        {anuncios &&
+          anuncios.map((index) => {
+            return (
+              <div className='container-anuncio' id={index._id}>
+                <div className='anuncio'>
+                  <div className='anuncio-img'>
+                    <Link to={`/anuncio/${index._id}`}>
+                      <img style={{ maxHeight: "270px", maxWidth: "270px" }} src={`${(index.urlImage) ? index.urlImage : API_URL + "images/sem_foto.png"}`} alt='Foto Placeholder'></img>
+                    </Link>
+                  </div>
+                  <div className='anuncio-conteudo'>
+                    <Link to={`/anuncio/${index._id}`}><h3>{index.veiculoMarca} {index.descricaoVeiculo}</h3></Link>
+                    <span>{index.anoModelo}</span>
+                    <h3 id='preco'>R$ {new Intl.NumberFormat('pt-BR', { maximumSignificantDigits: 3 }).format(index.veiculoValor)}</h3>
+
                   </div>
                 </div>
-              )
-            })
-          }
+              </div>
+            )
+          })
+        }
 
-
-        </div>
         <Pagination
           activePage={contadorPagina}
           itemsCountPerPage={20}
@@ -291,6 +271,7 @@ export default function Busca() {
           hideDisabled={true}
           hideFirstLastPages={true}
         />
+
       </div>
     </>
   )

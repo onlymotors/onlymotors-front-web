@@ -49,7 +49,7 @@ export default function Anuncio() {
             <div className='container-oneAnuncio'>
                 <div className='container-descricao'>
                     <div className='container-contato'>
-                        <img  src={`${(anuncio.urlImage) ? anuncio.urlImage : API_URL + "images/sem_foto.png"}`} alt='Foto Placeholder'></img>
+                        <img style={{maxWidth: "270px", maxHeight: "270px"}} src={`${(anuncio.urlImage) ? anuncio.urlImage : API_URL + "images/sem_foto.png"}`} alt='Foto Placeholder'></img>
                         <button onClick={() => criarChatRoom()}>
                             <FontAwesomeIcon icon={faComment} color='#FFF' size='lg' className='icons' />
                             MENSAGEM

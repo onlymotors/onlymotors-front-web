@@ -1,0 +1,28 @@
+.container-busca{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.buscaSection input{
+    height: 30px;
+    margin-right: 5px;
+    margin-bottom: 2rem;
+    padding: 5px;
+    border: 2px solid #a3a3a3;
+}
+
+.buscaSection button{
+    height: 2rem;
+    width: 4rem;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+    background-color: #ff7d04;
+    color: #fff;
+    transition: 0.4s;
+}
+
+.buscaSection button:hover{
+    cursor: pointer;
+    transform: scale(1.1);
+}

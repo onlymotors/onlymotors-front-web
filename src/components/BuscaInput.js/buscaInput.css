@@ -1,0 +1,23 @@
+.buscaInput input{
+    height: 35px;
+    width: 300px;
+    padding: 0.5rem;
+    border: 2px solid #a3a3a3
+}
+
+.buscaInput button{
+    height: 35px;
+    margin: 5px;
+    background: none;
+}
+
+.buscaInputDropDown{
+    position: absolute;
+    top: 50;
+    background-color: #fff;
+    padding-right: 5px;
+    padding-left: 5px;
+    line-height: 30px;
+    cursor: pointer;
+    z-index: 1;
+}

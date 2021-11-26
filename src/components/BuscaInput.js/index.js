@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from "react";
 import api from "../../services/api";
+import './buscaInput.css'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
 export default function BuscaInput(props) {
 
@@ -33,23 +36,22 @@ export default function BuscaInput(props) {
 
   return (
     <>
+      <div className="buscaInput">
+        <form onSubmit={(e) => { e.preventDefault(); window.location.href = `/Busca/${palavra}` }}>
+          <input placeholder="Digite a marca ou o modelo" value={palavra} onChange={e => setPalavra(e.target.value)} onFocus={() => setVisible(true)} onBlur={() => { if (!dontBlur) setVisible(false) }} />
+          <button type="submit"><FontAwesomeIcon icon={faSearch} size="lg" color="#fff" className='icons' /></button>
+        </form >
 
-      <form onSubmit={(e) => { e.preventDefault(); window.location.href = `/Busca/${palavra}` }}>
-        <input placeholder="Digite a marca ou o modelo" value={palavra} onChange={e => setPalavra(e.target.value)} onFocus={() => setVisible(true)} onBlur={() => { if (!dontBlur) setVisible(false) }} />
-        <button type="submit">Buscar</button>
-      </form >
-
-      <div style={{ position: "absolute", top: 50, backgroundColor: "white" }} onMouseEnter={() => setDontBlur(true)} onMouseLeave={() => setDontBlur(false)}>
-        {(visible)
-          ?
-          possiveisResultados.map(item =>
-
-            <li onClick={() => { console.log(item); window.location.href = `/Busca/${item}/buscarSugerido` }}>{item}</li>
-
-          )
-          :
-          <></>
-        }
+        <div className="buscaInputDropDown" onMouseEnter={() => setDontBlur(true)} onMouseLeave={() => setDontBlur(false)}>
+          {(visible)
+            ?
+            possiveisResultados.map(item =>
+              <li style={{}} onClick={() => { console.log(item); window.location.href = `/Busca/${item}/buscarSugerido` }}>{item}</li>
+            )
+            :
+            <></>
+          }
+        </div>
       </div>
     </>
   )

@@ -111,14 +111,14 @@ export default function MeusAnuncios() {
                     <span>{numAnuncios} Encontrados</span>
                 </div>
 
-            <button onClick={() => window.location.href="/Relatorio"}>Gerar Relatório</button>
+                <button className="btnRelatorioAnuncios" onClick={() => window.location.href="/Relatorio"}>Gerar Relatório</button>
                 {
                     anuncios.map((index) => {
                         return (
                             <div className='container-anuncio' id={index._id}>
                                 <div className='anuncio'>
                                     <div className='anuncio-img'>
-                                        <img style={{ maxHeight: "270px", maxWidth: "270px" }} src={`${(index.urlImage) ? index.urlImage : API_URL + "images/inserir_foto.png"}`} alt='Foto Placeholder'></img>
+                                        <img style={{ maxHeight: "270px", maxWidth: "270px" }} src={`${(index.urlImage) ? index.urlImage : API_URL + "images/sem_foto.png"}`} alt='Foto Placeholder'></img>
                                     </div>
                                     <div className='anuncio-conteudo'>
                                         <h3>{index.veiculoMarca} {index.descricaoVeiculo}</h3>

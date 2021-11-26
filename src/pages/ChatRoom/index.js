@@ -1,5 +1,5 @@
 import Header from '../../components/Header'
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, useLayoutEffect } from 'react';
 import { useParams } from 'react-router';
 import api, { API_URL } from '../../services/api';
 import {
@@ -7,13 +7,14 @@ import {
   subscribeToChat, sendMessage
 } from '../../services/chatService';
 import { geradorRandomico } from '../../utils/geradores';
+import './chatRoom.css'
 
 
 export default function ChatRoom(props) {
 
 
   const [isLoading, setIsLoading] = useState(true)
-  const scrollViewRef = useRef();
+  const chatScroll = useRef();
 
   const { id } = useParams()
 
@@ -76,7 +77,17 @@ export default function ChatRoom(props) {
         setIsLoading(false);
       }, 3000);
     }
+    if (chatScroll.current) {
+      chatScroll.current.scrollIntoView({ behavior: "smooth" });
+    }
   }, [isLoading])
+
+  useEffect(() => {
+    if (chatScroll.current) {
+      chatScroll.current.scrollIntoView({ behavior: "smooth" });
+    }
+    props.setEstado(props.estado + 1)
+  }, [chat]);
 
   const salvarMensagem = async (e) => {
     e.preventDefault()
@@ -90,33 +101,60 @@ export default function ChatRoom(props) {
   if (isLoading) {
     return (
       <>
-        Carregando...
+        <div style={{ textAlign: "center" }}>
+          <span>Carregando...</span>
+        </div>
+
       </>
     )
   }
 
 
+
   return (
     <>
-      {/* <Header /> */}
-      <div>---------------------------------------------------------------</div>
-      <div>Sala de Chat</div>
-      {chat.map((chatMessage, index) =>
-        <div key={chatMessage._id}>
-          <div> {chatMessage.nomeUser}</div>
-          <div> {chatMessage.mensagem}</div>
-          <div> {chatMessage.mensagemData}</div>
+      <div className="container-chatRoom">
+        <div className="chatTextBox">
+          {chat.map((chatMessage, index) =>
+            (email === chatMessage.emailUser)
+              ?
+              <div className="rowUser" key={chatMessage._id}>
+                <div className="userRight">
+                  <div>{chatMessage.mensagem}</div>
+                  <br/>
+                  <div style={{fontSize: "8pt"}}>{chatMessage.mensagemData}</div>
+                </div>
+              </div>
+              :
+              <div className="rowUser" key={chatMessage._id}>
+                <div className="userLeft">
+                  <div>{chatMessage.nomeUser}</div>
+                  <div>{chatMessage.mensagem}</div>
+                  <br/>
+                  <div style={{fontSize: "8pt"}}>{chatMessage.mensagemData}</div>
+                </div>
+              </div>
+          )}
+          <div ref={chatScroll} />
         </div>
-      )}
 
-      <form onSubmit={e => { salvarMensagem(e); sendMessage(dados); setMessage(''); props.setEstado(props.estado + 1) }}>
-        {/* <div> */}
-        <input value={message} onChange={e => setMessage(e.target.value)} />
-        <button type="submit" >Enviar</button>
-        {/* <button onClick={() => {salvarMensagem(); sendMessage(dados); setMessage('')}} >Enviar</button> */}
-      </form>
-      {/* </div> */}
-      <div>---------------------------------------------------------------</div>
+        <form className="chatInput"
+          onSubmit={e => {
+            dados.mensagemData = new Date();
+            dados.mensagemData = dados.mensagemData.toLocaleDateString() + " " + dados.mensagemData.toLocaleTimeString();
+            salvarMensagem(e);
+            sendMessage(dados);
+            setMessage('');
+            props.setEstado(props.estado + 1)
+          }}
+        >
+          <input value={message} placeholder="Escreva uma mensagem" onChange={e => setMessage(e.target.value)} />
+          {/* <button type="submit">Enviar</button> */}
+        </form>
+
+      </div>
+
+
     </>
   )
 }
