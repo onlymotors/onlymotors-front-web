@@ -22,6 +22,7 @@ export default function Anuncio() {
                         setTotal(res.data.numAnuncios)
                     setAnuncios(res.data.anuncio)
                     console.log(res.data.anuncio)
+                    setContar("false")
                     window.scrollTo(0, 0);
                 })
         }
