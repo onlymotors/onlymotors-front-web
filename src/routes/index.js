@@ -30,7 +30,7 @@ export default function Routes() {
             <Route exact path='/Relatorio' component={Relatorio}></Route>
             <Route exact path='/Chat/:id?' component={Chat} ></Route>
             <Route exact path='/ChatRoom/:id' component={ChatRoom} ></Route>
-            <Route exact path='/Busca/:query?/:searcher?' component={Busca} isPrivate></Route>
+            <Route exact path='/Busca/:query?/:searcher?' component={Busca} ></Route>
         </Switch>
     );
 };

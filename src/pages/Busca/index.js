@@ -201,7 +201,8 @@ export default function Busca() {
       <div className="container-busca">
         <div className='container-title'>
           <h2>Carros Novos e Usados</h2>
-          {anuncios.length === 0 ? <span>Nenhum anúncios encontrado</span> : <span>{numAnuncios} Anúncios Encontrados</span>}
+          {anuncios.length === 0 && <span>Nenhum anúncio encontrado</span>}
+          {/* {anuncios.length === 0 ? <span>Nenhum anúncios encontrado</span> : <span>{numAnuncios} Anúncios Encontrados</span>} */}
         </div>
 
         <section className="buscaSection">

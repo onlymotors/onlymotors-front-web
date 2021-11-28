@@ -108,7 +108,7 @@ export default function MeusAnuncios() {
             <div className='container-home'>
                 <div className='container-title'>
                     <h2>Meus Anúncios</h2>
-                    <span>{numAnuncios} Encontrados</span>
+                    {/* <span>{numAnuncios} Encontrados</span> */}
                 </div>
 
                 <button className="btnRelatorioAnuncios" onClick={() => window.location.href="/Relatorio"}>Gerar Relatório</button>
