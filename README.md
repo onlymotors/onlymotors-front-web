@@ -30,12 +30,30 @@ Essa é a aplicação com a interface do usuário construída para navegadores, 
 
 ```bash
 $ npm install
+$ npm install --global expo-cli
 ```
 
 </li>
 </ul>
 </ul>
 
+<ul>
+<li><b>Criação das Variáveis</b></li>
+<ul>
+<li>Configure o endereço do Back-End na linha 4 do arquivo <b>./src/services/api.js</b>:
+<br/>
+
+
+```bash
+export const API_URL = 'endereco_do_back_end'
+```
+
+<b>Obs:</b> Se ambas as aplicações forem executadas na mesma rede, o endereço do Back-End deve ser o IP do computador naquela rede.
+<br/>
+
+</li>
+</ul>
+</ul>
 
 <ul>
 <li><b>Execute a aplicação</b></li>
@@ -44,10 +62,9 @@ $ npm install
 <br/>
 
 ```bash
-$ npm start
+$ expo start
 ```
 
 </li>
 </ul>
 </ul>
-
