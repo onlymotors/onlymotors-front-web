@@ -13,6 +13,9 @@ import Relatorio from '../pages/Relatorio'
 import Chat from '../pages/Chat'
 import ChatRoom from '../pages/ChatRoom';
 import Busca from '../pages/Busca';
+import RevisarTermos from '../pages/RevisarTermos';
+import Termos from '../pages/Termos';
+import Privacidade from '../pages/Privacidade';
 
 
 export default function Routes() {
@@ -25,7 +28,10 @@ export default function Routes() {
             <Route exact path="/MeuCadastro" component={MeuCadastro} isPrivate></Route>
             <Route exact path='/MeusAnuncios' component={MeusAnuncios} isPrivate></Route>
             <Route exact path='/AlterarCadastro/:token' component={AlterarCadastro} ></Route>
+            <Route exact path='/revisartermos/:token' component={RevisarTermos} ></Route>
             <Route exact path='/AlterarAnuncio/:anuncio_id' component={AlterarAnuncio} ></Route>
+            <Route exact path='/termos' component={Termos}></Route>
+            <Route exact path='/privacidade' component={Privacidade}></Route>
             <Route exact path='/singin' component={SingIn}></Route>
             <Route exact path='/Relatorio' component={Relatorio}></Route>
             <Route exact path='/Chat/:id?' component={Chat} ></Route>

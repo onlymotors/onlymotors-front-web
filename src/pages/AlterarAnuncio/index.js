@@ -153,13 +153,16 @@ export default function AlterarAnuncio() {
 
             <img className="imagemAlterarAnuncio" src={`${(imagem.length > 0) ? imagem : API_URL + "images/sem_foto.png"}`} alt='Foto Placeholder'></img>
 
-            <label className="uploadAnuncioFoto" htmlFor="upload">Enviar Imagem</label>
-            <input
-              id="upload"
-              type='file'
-              name='image'
-              onChange={(e) => handleChange(e)}
-            />
+            <div>
+              <label className="uploadAnuncioFoto" htmlFor="upload">Selecionar Imagem</label>
+              <input
+                id="upload"
+                type='file'
+                name='image'
+                onChange={(e) => handleChange(e)}
+              />
+            </div>
+
           </div>
 
         </div>

@@ -1,9 +1,10 @@
 import axios from "axios";
 
+export const API_URL = 'http://localhost:3333/'
 
 const token = localStorage.getItem("tokenAuth")
 const api = axios.create({
-    baseURL: 'http://localhost:3333/',
+    baseURL: `${API_URL}`,
     headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
@@ -12,5 +13,3 @@ const api = axios.create({
 });
 
 export default api;
-
-export const API_URL = 'http://localhost:3333/'

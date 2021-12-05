@@ -38,15 +38,18 @@ function AuthProvider({ children }) {
                     setloadingAuth(true);
 
                     if (response.data.statusCadastro === true) {
+                        if (response.data.termosAceitos) {
+                            localStorage.setItem('tokenAuth', response.data.token);
+                            api.defaults.headers.Authorization = `Bearer ${(response.data.token)}`;
+                            setAuthenticated(true);
 
-                        localStorage.setItem('tokenAuth', response.data.token);
-                        api.defaults.headers.Authorization = `Bearer ${(response.data.token)}`;
-                        setAuthenticated(true);
+                            await api.get(`users/userid`).then(res => {
+                                setUser(res.data[0])
 
-                        await api.get(`users/userid`).then(res => {
-                            setUser(res.data[0])
-
-                        });
+                            });
+                        } else {
+                            return window.location.href = `/revisartermos/${response.data.token}`
+                        }
                     } else {
                         return window.location.href = `/alterarcadastro/${response.data.token}`
                     }
@@ -65,6 +68,7 @@ function AuthProvider({ children }) {
         localStorage.removeItem('tokenAuth');
         api.defaults.headers.Authorization = undefined;
         setAuthenticated(false);
+        return window.location.href = "/"
     }
 
     return (
